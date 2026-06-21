@@ -1,0 +1,411 @@
+---
+import i18n from '../data/i18n.json';
+import projects from '../data/projects.json';
+const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[key]?.es ?? key;
+
+const catLabelKey: Record<string, string> = { web: 'proj.cWeb', ecom: 'proj.cEcom', sys: 'proj.cSys', prog: 'proj.f_prog' };
+const statusKey: Record<string, string> = { live: 'proj.st_live', demo: 'proj.st_demo', private: 'proj.st_private', progress: 'proj.st_progress' };
+const statusStyle: Record<string, { color: string; border: string; bg: string; dot: string }> = {
+  live: { color: '#6ee7b7', border: 'rgba(52,211,153,.55)', bg: 'rgba(52,211,153,.14)', dot: '#34d399' },
+  demo: { color: '#93c5fd', border: 'rgba(96,165,250,.55)', bg: 'rgba(96,165,250,.14)', dot: '#60a5fa' },
+  private: { color: '#d8b4fe', border: 'rgba(192,132,252,.55)', bg: 'rgba(192,132,252,.14)', dot: '#c084fc' },
+  progress: { color: '#fcd34d', border: 'rgba(251,191,36,.5)', bg: 'rgba(251,191,36,.14)', dot: '#fbbf24' },
+};
+
+const filters = [
+  { cat: 'all', key: 'proj.f_all' },
+  { cat: 'web', key: 'proj.f_web' },
+  { cat: 'ecom', key: 'proj.f_ecom' },
+  { cat: 'sys', key: 'proj.f_sys' },
+  { cat: 'prog', key: 'proj.f_prog' },
+];
+---
+<section id="projects" class="projects">
+  <div data-reveal class="section-head">
+    <div class="eyebrow" style="color:#60a5fa;">
+      <span class="dot" style="background:#3b82f6; box-shadow:0 0 10px #3b82f6;"></span>
+      <span data-i18n="proj.label">{t('proj.label')}</span>
+    </div>
+    <h2 class="section-title" data-i18n="proj.title">{t('proj.title')}</h2>
+    <p class="section-sub" data-i18n="proj.sub">{t('proj.sub')}</p>
+  </div>
+
+  <div class="filters">
+    {filters.map((f) => (
+      <button data-filter={f.cat} class="filter-btn" type="button">
+        <span data-i18n={f.key}>{t(f.key)}</span>
+      </button>
+    ))}
+  </div>
+
+  <div class="grid">
+    {projects.map((p: any) => {
+      const ss = statusStyle[p.status];
+      return (
+        <article data-proj data-cat={p.cat} data-projid={p.id} class="card">
+          <div class="card-media">
+            {p.img ? (
+              <img src={import.meta.env.BASE_URL + p.img} alt={p.name} class="card-img" />
+            ) : (
+              <div class="card-placeholder" style={`background: radial-gradient(circle at 30% 20%, ${p.accent}66, transparent 55%), radial-gradient(circle at 80% 90%, rgba(34,211,238,.3), transparent 55%), #0c0c16;`}>
+                <div class="placeholder-grid" aria-hidden="true"></div>
+                <div class="placeholder-icon">
+                  {p.icon === 'erp' ? (
+                    <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke={p.accent} stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style={`opacity:.85; filter:drop-shadow(0 0 14px ${p.accent}99);`}><line x1="4" y1="20" x2="20" y2="20"/><rect x="5.5" y="11" width="3.4" height="7"/><rect x="10.3" y="6" width="3.4" height="12"/><rect x="15.1" y="14" width="3.4" height="4"/></svg>
+                  ) : (
+                    <svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke={p.accent} stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style={`opacity:.85; filter:drop-shadow(0 0 14px ${p.accent}99);`}><rect x="2" y="6" width="20" height="12" rx="4"/><line x1="7" y1="11" x2="7" y2="13"/><line x1="6" y1="12" x2="8" y2="12"/><circle cx="16" cy="11" r="1"/><circle cx="18.5" cy="13" r="1"/></svg>
+                  )}
+                </div>
+              </div>
+            )}
+            <div class="card-shade" aria-hidden="true"></div>
+            <div data-scan class="card-scan" aria-hidden="true"></div>
+            <span class="status-badge" style={`background:${ss.bg}; border-color:${ss.border}; color:${ss.color};`}>
+              {p.status === 'private' ? (
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={ss.color} stroke-width="2.2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+              ) : (
+                <span class={`status-dot${p.status === 'demo' ? '' : ' status-dot-blink'}`} style={`background:${ss.dot}; box-shadow:0 0 8px ${ss.dot};`}></span>
+              )}
+              <span data-i18n={statusKey[p.status]}>{t(statusKey[p.status])}</span>
+            </span>
+            <div class="card-overlay">
+              <div class="overlay-tech">
+                {p.tech.map((tech: string) => <span class="tech-chip">{tech}</span>)}
+              </div>
+              <span class="overlay-cta">
+                <span data-i18n="proj.open">{t('proj.open')}</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-top">
+              <h3 class="card-name">{p.name}</h3>
+              <span class="card-cat" data-i18n={catLabelKey[p.cat]}>{t(catLabelKey[p.cat])}</span>
+            </div>
+            <p class="card-desc" data-proj-field="desc">{p.desc.es}</p>
+            <div class="card-metric">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={p.accent} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
+              <span data-proj-field="metric" style={`color:${p.accent};`}>{p.metric.es}</span>
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+
+  <div data-modal class="modal">
+    <div data-modal-backdrop class="modal-backdrop"></div>
+    <div data-modal-panel class="modal-panel">
+      <button data-modal-close aria-label="Cerrar" class="modal-close" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div data-modal-gallery class="modal-gallery"></div>
+      <div class="modal-content">
+        <div class="modal-meta">
+          <span data-modal-status class="modal-status"></span>
+          <span data-modal-cat class="modal-cat"></span>
+          <span data-modal-metric class="modal-metric"></span>
+        </div>
+        <h2 data-modal-title class="modal-title"></h2>
+        <p data-modal-desc class="modal-desc"></p>
+        <div class="modal-grid">
+          <div class="modal-block">
+            <div class="modal-block-head">
+              <span class="modal-block-dot" style="background:#f87171; box-shadow:0 0 10px rgba(248,113,113,.6);"></span>
+              <span data-modal-lbl-problem class="modal-block-label"></span>
+            </div>
+            <p data-modal-problem class="modal-block-text"></p>
+          </div>
+          <div class="modal-block">
+            <div class="modal-block-head">
+              <span class="modal-block-dot" style="background:#34d399; box-shadow:0 0 10px rgba(52,211,153,.6);"></span>
+              <span data-modal-lbl-solution class="modal-block-label"></span>
+            </div>
+            <p data-modal-solution class="modal-block-text"></p>
+          </div>
+        </div>
+        <div class="modal-impact-wrap">
+          <div class="modal-impact">
+            <div class="impact-head">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
+              <span data-modal-lbl-impact class="impact-label"></span>
+            </div>
+            <p data-modal-impact class="impact-text"></p>
+          </div>
+        </div>
+        <div class="modal-section">
+          <span data-modal-lbl-tech class="modal-section-label"></span>
+          <div data-modal-tech class="modal-tech"></div>
+        </div>
+        <div class="modal-section">
+          <span data-modal-lbl-links class="modal-section-label"></span>
+          <div data-modal-links class="modal-links"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects { max-width: 1240px; margin: 0 auto; padding: clamp(70px, 11vw, 130px) 24px; }
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 34px; }
+  .filter-btn {
+    height: 42px;
+    padding: 0 20px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all .25s;
+  }
+  .filter-btn.active {
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 8px 24px rgba(124,58,237,.35);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 22px;
+    margin-top: 38px;
+  }
+  .card {
+    position: relative;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .35s, border-color .35s, box-shadow .35s;
+  }
+  .card:hover {
+    transform: translateY(-8px) scale(1.012);
+    border-color: rgba(139,92,246,.5);
+    box-shadow: 0 28px 72px rgba(124,58,237,.28);
+  }
+  .card-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+  .card-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .55s ease; }
+  .card:hover .card-img { transform: scale(1.08); }
+  .card-placeholder { position: absolute; inset: 0; }
+  .placeholder-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .placeholder-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .card-shade {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(8,8,13,.55), transparent 58%);
+    pointer-events: none;
+  }
+  .card-scan {
+    position: absolute; left: 0; right: 0; top: 0; height: 38%;
+    background: linear-gradient(to bottom, rgba(167,139,250,0), rgba(167,139,250,.22) 55%, rgba(167,139,250,0));
+    opacity: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    transition: opacity .35s ease;
+  }
+  .card:hover .card-scan { opacity: 1; animation: scan 1.1s ease-in-out; }
+
+  .status-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    border-radius: 100px;
+    border: 1px solid;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: .06em;
+    backdrop-filter: blur(4px);
+  }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; flex: none; }
+  .status-dot-blink { animation: blink 2s infinite; }
+
+  .card-overlay {
+    position: absolute; inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 13px;
+    padding: 18px;
+    background: linear-gradient(to top, rgba(7,7,14,.94), rgba(7,7,14,.45) 62%, rgba(7,7,14,.05));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .35s ease;
+  }
+  .card:hover .card-overlay { opacity: 1; }
+  .overlay-tech { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tech-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 9px;
+    border-radius: 7px;
+    border: 1px solid rgba(255,255,255,.18);
+    background: rgba(255,255,255,.08);
+    color: #ECECF4;
+  }
+  .overlay-cta {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    color: #fff;
+    font-weight: 600;
+    font-size: 13.5px;
+    box-shadow: 0 10px 26px rgba(124,58,237,.4);
+  }
+
+  .card-body { padding: 18px 20px 20px; }
+  .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .card-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 20px; margin: 0; }
+  .card-cat {
+    flex: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .card-desc { font-size: 13.5px; line-height: 1.55; color: var(--muted); margin: 9px 0 0; }
+  .card-metric {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 13px;
+    border-top: 1px solid var(--border);
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .modal {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+  .modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(4,4,10,.8);
+    backdrop-filter: blur(8px);
+  }
+  .modal-panel {
+    position: relative;
+    width: min(880px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    box-shadow: 0 50px 130px rgba(0,0,0,.6);
+    opacity: 0;
+    transform: translateY(20px) scale(.98);
+    transition: opacity .3s ease, transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    z-index: 3;
+    display: flex;
+    width: 40px; height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    border: 1px solid rgba(255,255,255,.18);
+    background: rgba(10,10,18,.55);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    cursor: pointer;
+  }
+  .modal-gallery { display: flex; flex-direction: column; gap: 10px; padding: 14px 14px 0; }
+  .modal-content { padding: 24px clamp(20px, 4vw, 34px) clamp(24px, 4vw, 34px); }
+  .modal-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .modal-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .06em;
+  }
+  .modal-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .modal-metric {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(167,139,250,.4);
+    background: rgba(139,92,246,.12);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #c4b5fd;
+  }
+  .modal-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(26px, 4vw, 38px);
+    letter-spacing: -.02em;
+    margin: 14px 0 0;
+  }
+  .modal-desc { font-size: 15.5px; line-height: 1.6; color: var(--muted); margin: 12px 0 0; }
+  .modal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .modal-block { padding: 18px; border-radius: 14px; border: 1px solid var(--border); background: var(--card); }
+  .modal-block-head { display: flex; align-items: center; gap: 8px; }
+  .modal-block-dot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+  .modal-block-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .modal-block-text { font-size: 14px; line-height: 1.55; color: var(--text); margin: 10px 0 0; }
+
+  .modal-impact-wrap { margin-top: 24px; }
+  .modal-impact {
+    position: relative;
+    padding: 18px 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(167,139,250,.3);
+    background: linear-gradient(135deg, rgba(139,92,246,.12), rgba(34,211,238,.06));
+    overflow: hidden;
+  }
+  .impact-head { position: relative; display: flex; align-items: center; gap: 8px; }
+  .impact-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #c4b5fd; }
+  .impact-text { position: relative; font-size: 14.5px; line-height: 1.55; color: var(--text); font-weight: 500; margin: 10px 0 0; }
+
+  .modal-section { margin-top: 24px; }
+  .modal-section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .modal-tech, .modal-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .modal-links { gap: 10px; }
+</style>

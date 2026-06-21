@@ -1,0 +1,87 @@
+---
+import Logo from './Logo.astro';
+import i18n from '../data/i18n.json';
+const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[key]?.es ?? key;
+---
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><Logo gradientId="wgnav" /></span>
+      <span class="brand-text">
+        <span class="brand-name">Oscar López</span>
+        <span class="brand-role">FULL&nbsp;STACK&nbsp;DEV</span>
+      </span>
+    </a>
+
+    <div class="nav-actions">
+      <a href="#about" class="nav-link" data-i18n="nav.about">{t('nav.about')}</a>
+      <a href="#services" class="nav-link" data-i18n="nav.services">{t('nav.services')}</a>
+      <a href="#projects" class="nav-link" data-i18n="nav.projects">{t('nav.projects')}</a>
+      <a href="#stack" class="nav-link" data-i18n="nav.stack">{t('nav.stack')}</a>
+      <a href="#contact" class="nav-link" data-i18n="nav.contact">{t('nav.contact')}</a>
+
+      <span class="nav-sep"></span>
+
+      <button class="icon-btn lang-btn" id="lang-toggle" aria-label="Idioma" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>
+        <span data-lang-label>EN</span>
+      </button>
+
+      <button class="icon-btn" id="theme-toggle" aria-label="Tema" type="button">
+        <span data-ic-sun><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg></span>
+        <span data-ic-moon style="display:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.6 6.6 0 0 0 21 12.8Z"/></svg></span>
+      </button>
+
+      <a href="https://wa.me/526692662372" target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+        <span data-i18n="nav.cta">{t('nav.cta')}</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: var(--navbg);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    padding-block: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: inherit; }
+  .brand-mark {
+    display: flex; width: 40px; height: 40px;
+    align-items: center; justify-content: center;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .brand-text { display: flex; flex-direction: column; line-height: 1; }
+  .brand-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -.01em; }
+  .brand-role { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .22em; color: var(--muted); margin-top: 4px; }
+
+  .nav-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .nav-link {
+    padding: 8px 12px;
+    border-radius: 9px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color .2s, background .2s;
+  }
+  .nav-link:hover { color: var(--text); background: var(--surface); }
+  .nav-sep { width: 1px; height: 22px; background: var(--border); margin: 0 6px; }
+  .lang-btn { width: auto; gap: 6px; padding: 0 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+  .nav-cta { height: 40px; padding: 0 18px; font-size: 14px; box-shadow: 0 8px 24px rgba(124,58,237,.35); }
+  .nav-cta:hover { box-shadow: 0 14px 34px rgba(124,58,237,.5); }
+</style>

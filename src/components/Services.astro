@@ -1,0 +1,133 @@
+---
+import i18n from '../data/i18n.json';
+const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[key]?.es ?? key;
+
+const services = [
+  {
+    titleKey: 'serv.1t', descKey: 'serv.1d', gradient: 'linear-gradient(135deg,#8b5cf6,#3b82f6)', glow: 'rgba(124,58,237,.18)', border: 'rgba(139,92,246,.5)',
+    icon: '<polyline points="9 8 5 12 9 16"/><polyline points="15 8 19 12 15 16"/>',
+  },
+  {
+    titleKey: 'serv.2t', descKey: 'serv.2d', gradient: 'linear-gradient(135deg,#6366f1,#3b82f6)', glow: 'rgba(37,99,235,.18)', border: 'rgba(59,130,246,.5)',
+    icon: '<rect x="3" y="4" width="18" height="12" rx="2"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/>',
+  },
+  {
+    titleKey: 'serv.3t', descKey: 'serv.3d', gradient: 'linear-gradient(135deg,#22d3ee,#3b82f6)', glow: 'rgba(34,211,238,.16)', border: 'rgba(34,211,238,.5)',
+    icon: '<path d="M8 4c-3 0-2 8-5 8 3 0 2 8 5 8"/><path d="M16 4c3 0 2 8 5 8-3 0-2 8-5 8"/>',
+  },
+  {
+    titleKey: 'serv.4t', descKey: 'serv.4d', gradient: 'linear-gradient(135deg,#a855f7,#8b5cf6)', glow: 'rgba(124,58,237,.18)', border: 'rgba(139,92,246,.5)',
+    icon: '<polygon points="12 3 21 8 12 13 3 8"/><polyline points="3 13 12 18 21 13"/>',
+  },
+  {
+    titleKey: 'serv.5t', descKey: 'serv.5d', gradient: 'linear-gradient(135deg,#3b82f6,#6366f1)', glow: 'rgba(37,99,235,.18)', border: 'rgba(59,130,246,.5)',
+    icon: '<path d="M8 4c-3 0-2 8-5 8 3 0 2 8 5 8"/><path d="M16 4c3 0 2 8 5 8-3 0-2 8-5 8"/>',
+  },
+  {
+    titleKey: 'serv.6t', descKey: 'serv.6d', gradient: 'linear-gradient(135deg,#22d3ee,#8b5cf6)', glow: 'rgba(34,211,238,.16)', border: 'rgba(34,211,238,.5)',
+    icon: '<path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+  },
+  {
+    titleKey: 'serv.7t', descKey: 'serv.7d', gradient: 'linear-gradient(135deg,#8b5cf6,#6366f1)', glow: 'rgba(124,58,237,.18)', border: 'rgba(139,92,246,.5)',
+    icon: '<line x1="4" y1="20" x2="20" y2="20"/><rect x="5.5" y="12" width="3" height="6"/><rect x="10.5" y="7" width="3" height="11"/><rect x="15.5" y="14" width="3" height="4"/>',
+  },
+];
+---
+<section id="services" class="services">
+  <div data-reveal class="section-head">
+    <div class="eyebrow">
+      <span class="dot" style="background:#8b5cf6; box-shadow:0 0 10px #8b5cf6;"></span>
+      <span data-i18n="serv.label">{t('serv.label')}</span>
+    </div>
+    <h2 class="section-title" data-i18n="serv.title">{t('serv.title')}</h2>
+    <p class="section-sub" data-i18n="serv.sub">{t('serv.sub')}</p>
+  </div>
+
+  <div class="services-grid">
+    {services.map((s) => (
+      <div data-reveal class="service-card" style={`--sv-border:${s.border}; --sv-glow:${s.glow};`}>
+        <div class="service-icon" style={`background:${s.gradient};`}>
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
+        </div>
+        <h3 class="service-title" data-i18n={s.titleKey}>{t(s.titleKey)}</h3>
+        <p class="service-desc" data-i18n={s.descKey}>{t(s.descKey)}</p>
+      </div>
+    ))}
+
+    <div data-reveal class="service-card service-cta">
+      <div class="service-icon service-icon-outline">
+        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Z"/></svg>
+      </div>
+      <h3 class="service-title" data-i18n="contact.title">{t('contact.title')}</h3>
+      <a href="#contact" class="service-link">
+        <span data-i18n="nav.cta">{t('nav.cta')}</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services { max-width: 1240px; margin: 0 auto; padding: clamp(70px, 11vw, 130px) 24px; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 18px;
+    margin-top: 46px;
+  }
+  .service-card {
+    position: relative;
+    padding: 26px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    overflow: hidden;
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--sv-border);
+    box-shadow: 0 20px 52px var(--sv-glow);
+  }
+  .service-icon {
+    display: flex;
+    width: 48px; height: 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    box-shadow: 0 10px 24px rgba(124,58,237,.32);
+  }
+  .service-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 18px 0 0;
+  }
+  .service-desc { font-size: 14px; line-height: 1.55; color: var(--muted); margin: 9px 0 0; }
+
+  .service-cta {
+    border-style: dashed;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+  .service-cta:hover { transform: none; border-color: var(--border); box-shadow: none; }
+  .service-icon-outline {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: none;
+  }
+  .service-cta .service-title { margin: 14px 0 0; }
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 6px;
+    color: #a78bfa;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+  }
+</style>

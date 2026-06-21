@@ -1,0 +1,34 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Oscar López — Full Stack Developer & UI/UX Designer',
+  description = 'Desarrollo sistemas y experiencias digitales que aumentan ventas y optimizan operaciones.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <div class="bg-ambient" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="grid"></div>
+    </div>
+    <div style="position: relative; z-index: 1;">
+      <slot />
+    </div>
+    <script src="../scripts/app.js"></script>
+  </body>
+</html>

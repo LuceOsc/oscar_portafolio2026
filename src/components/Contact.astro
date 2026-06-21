@@ -1,0 +1,199 @@
+---
+import i18n from '../data/i18n.json';
+const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[key]?.es ?? key;
+---
+<section id="contact" class="contact">
+  <div data-reveal class="contact-card">
+    <div class="contact-glow" aria-hidden="true"></div>
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="eyebrow">
+          <span class="dot" style="background:#8b5cf6; box-shadow:0 0 10px #8b5cf6;"></span>
+          <span data-i18n="contact.label">{t('contact.label')}</span>
+        </div>
+        <h2 class="contact-title" data-i18n="contact.title">{t('contact.title')}</h2>
+        <p class="contact-sub" data-i18n="contact.sub">{t('contact.sub')}</p>
+        <div class="fast-badge">
+          <span class="fast-dot"></span>
+          <span data-i18n="contact.fast">{t('contact.fast')}</span>
+        </div>
+
+        <div class="contact-links">
+          <a href="https://wa.me/526692662372" target="_blank" rel="noopener" class="contact-link contact-link-wa">
+            <span class="link-icon link-icon-wa">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.4 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>
+            </span>
+            <span class="link-text">
+              <span data-i18n="contact.waBtn">{t('contact.waBtn')}</span>
+              <span class="link-sub">+52 669 266 2372</span>
+            </span>
+          </a>
+          <a href="#" data-email-link class="contact-link contact-link-email">
+            <span class="link-icon link-icon-email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <span class="link-text">
+              <span data-i18n="contact.emailL">{t('contact.emailL')}</span>
+              <span class="link-sub" data-email-text>&nbsp;</span>
+            </span>
+          </a>
+          <a href="https://www.linkedin.com/in/oscar-jos%C3%A9-l%C3%B3pez-lucero/" target="_blank" rel="noopener" class="contact-link contact-link-li">
+            <span class="link-icon link-icon-li">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="#fff"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3s-2.3 1.57-2.3 3.2V21H9V9Z"/></svg>
+            </span>
+            <span class="link-text">
+              <span data-i18n="contact.liL">{t('contact.liL')}</span>
+              <span class="link-sub">/in/oscar-josé-lópez-lucero</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <form id="contact-form" class="contact-form">
+          <span class="form-title" data-i18n="contact.formTitle">{t('contact.formTitle')}</span>
+          <input name="cname" type="text" required data-i18n-ph="contact.fname" placeholder={t('contact.fname')} class="form-field" />
+          <input name="cemail" type="email" required data-i18n-ph="contact.femail" placeholder={t('contact.femail')} class="form-field" />
+          <textarea name="cmsg" rows="4" required data-i18n-ph="contact.fmsg" placeholder={t('contact.fmsg')} class="form-field form-textarea"></textarea>
+          <button type="submit" class="form-submit">
+            <span data-i18n="contact.send">{t('contact.send')}</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact { max-width: 1240px; margin: 0 auto; padding: clamp(70px, 11vw, 130px) 24px clamp(50px, 8vw, 90px); }
+  .contact-card {
+    position: relative;
+    border-radius: 28px;
+    border: 1px solid var(--border);
+    background: linear-gradient(150deg, var(--card), transparent);
+    overflow: hidden;
+  }
+  .contact-glow {
+    position: absolute;
+    top: -30%; right: -10%;
+    width: 40%; height: 120%;
+    background: radial-gradient(circle, rgba(139,92,246,.22), transparent 65%);
+    filter: blur(30px);
+    pointer-events: none;
+  }
+  .contact-inner {
+    position: relative;
+    display: flex;
+    gap: clamp(28px, 5vw, 56px);
+    flex-wrap: wrap;
+    padding: clamp(28px, 4vw, 52px);
+  }
+  .contact-info { flex: 1 1 320px; min-width: 280px; }
+  .contact-info .eyebrow { color: #a78bfa; }
+  .contact-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4.2vw, 44px);
+    line-height: 1.06;
+    letter-spacing: -.025em;
+    margin: 18px 0 0;
+  }
+  .contact-sub { font-size: 16px; color: var(--muted); margin: 14px 0 0; line-height: 1.55; }
+  .fast-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 8px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(52,211,153,.4);
+    background: rgba(52,211,153,.1);
+    font-size: 13px;
+    font-weight: 600;
+    color: #6ee7b7;
+  }
+  .fast-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 10px #34d399;
+    animation: blink 2s infinite;
+    flex: none;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 12px; margin-top: 30px; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .25s, transform .25s;
+  }
+  .contact-link-wa:hover { border-color: rgba(34,197,94,.55); transform: translateX(4px); }
+  .contact-link-email:hover { border-color: rgba(139,92,246,.55); transform: translateX(4px); }
+  .contact-link-li:hover { border-color: rgba(59,130,246,.55); transform: translateX(4px); }
+  .link-icon {
+    display: flex;
+    width: 42px; height: 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    flex: none;
+  }
+  .link-icon-wa { background: linear-gradient(135deg, #22c55e, #16a34a); }
+  .link-icon-email { background: linear-gradient(135deg, #8b5cf6, #3b82f6); }
+  .link-icon-li { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+  .link-text { display: flex; flex-direction: column; }
+  .link-text > span:first-child { font-weight: 600; font-size: 14.5px; }
+  .link-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .contact-form-wrap { flex: 1 1 340px; min-width: 290px; }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .form-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 18px; }
+  .form-field {
+    height: 48px;
+    padding: 0 15px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--field);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: 14.5px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .form-field:focus { border-color: rgba(139,92,246,.7); box-shadow: 0 0 0 3px rgba(139,92,246,.18); }
+  .form-textarea { height: auto; padding: 13px 15px; resize: vertical; }
+  .form-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    height: 50px;
+    border-radius: 13px;
+    border: none;
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(124,58,237,.4);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(124,58,237,.55); }
+</style>

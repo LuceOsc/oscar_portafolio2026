@@ -1,0 +1,186 @@
+---
+import Logo from './Logo.astro';
+import i18n from '../data/i18n.json';
+const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[key]?.es ?? key;
+---
+<section id="about" class="about">
+  <div data-reveal class="about-photo">
+    <div class="photo-glow" aria-hidden="true"></div>
+    <div class="photo-frame">
+      <div class="photo-inner">
+        <div class="photo-grid" aria-hidden="true"></div>
+        <img src={`${import.meta.env.BASE_URL}assets/oscar-cutout.png`} alt="Oscar López" class="photo-img" />
+        <div class="photo-tint" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="cat-badge">
+      <Logo gradientId="wgabout" size={22} from="#8b5cf6" to="#22d3ee" />
+      <span data-i18n="about.wolf">{t('about.wolf')}</span>
+    </div>
+  </div>
+
+  <div data-reveal class="about-copy">
+    <div class="eyebrow">
+      <span class="dot" style="background:#3b82f6; box-shadow:0 0 10px #3b82f6;"></span>
+      <span data-i18n="about.label">{t('about.label')}</span>
+    </div>
+    <h2 class="about-title" data-i18n="about.title">{t('about.title')}</h2>
+    <p class="about-p" data-i18n="about.p1">{t('about.p1')}</p>
+    <p class="about-p" data-i18n="about.p2">{t('about.p2')}</p>
+
+    <div class="value-card">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="value-icon"><path d="M3 17 9 11l4 4 8-8"/><polyline points="15 4 21 4 21 10"/></svg>
+      <p data-i18n="about.value">{t('about.value')}</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 4 14h7l-1 7 9-11h-7l1-7Z"/></svg>
+        <div class="feature-title" data-i18n="about.s1">{t('about.s1')}</div>
+        <div class="feature-desc" data-i18n="about.s1d">{t('about.s1d')}</div>
+      </div>
+      <div class="feature-card">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9 2.6.9-5.5-4-3.9 5.5-.8L12 3Z" transform="scale(0.92) translate(1 0)"/></svg>
+        <div class="feature-title" data-i18n="about.s2">{t('about.s2')}</div>
+        <div class="feature-desc" data-i18n="about.s2d">{t('about.s2d')}</div>
+      </div>
+      <div class="feature-card">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12a8 8 0 1 1-4-7"/></svg>
+        <div class="feature-title" data-i18n="about.s3">{t('about.s3')}</div>
+        <div class="feature-desc" data-i18n="about.s3d">{t('about.s3d')}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: clamp(70px, 11vw, 130px) 24px;
+    display: flex;
+    gap: clamp(32px, 6vw, 68px);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .about-photo {
+    flex: 1 1 320px;
+    min-width: 280px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .photo-glow {
+    position: absolute;
+    width: 80%; height: 80%; top: 10%;
+    background: radial-gradient(circle, rgba(59,130,246,.32), transparent 62%);
+    filter: blur(40px);
+  }
+  .photo-frame {
+    position: relative;
+    width: min(380px, 82vw);
+    border-radius: 24px;
+    padding: 1.5px;
+    background: linear-gradient(200deg, rgba(34,211,238,.5), rgba(59,130,246,.2) 50%, rgba(139,92,246,.7));
+    box-shadow: 0 28px 70px rgba(37,99,235,.28);
+  }
+  .photo-inner {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    background: radial-gradient(120% 95% at 50% 12%, rgba(34,211,238,.26), rgba(59,130,246,.12) 45%, var(--bg2) 80%);
+  }
+  .photo-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size: 30px 30px;
+    -webkit-mask-image: radial-gradient(circle at 50% 35%, #000, transparent 75%);
+    mask-image: radial-gradient(circle at 50% 35%, #000, transparent 75%);
+  }
+  .photo-img {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 5.2;
+    object-fit: cover;
+    object-position: center top;
+    filter: drop-shadow(0 16px 36px rgba(37,99,235,.4));
+  }
+  .photo-tint {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(139,92,246,.16), transparent 45%, rgba(34,211,238,.12));
+    pointer-events: none;
+  }
+  .cat-badge {
+    position: absolute;
+    bottom: -18px; right: 4%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: rgba(10,10,18,.82);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 14px 36px rgba(0,0,0,.34);
+    font-size: 12.5px;
+    font-weight: 500;
+    max-width: 220px;
+    line-height: 1.35;
+    color: #ECECF4;
+  }
+
+  .about-copy { flex: 1 1 420px; min-width: 300px; }
+  .about-copy .eyebrow { color: #60a5fa; }
+  .about-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(30px, 4.4vw, 46px);
+    line-height: 1.06;
+    letter-spacing: -.025em;
+    margin: 20px 0 0;
+    max-width: 13ch;
+  }
+  .about-p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 22px 0 0;
+  }
+  .about-p + .about-p { margin-top: 14px; }
+
+  .value-card {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(167,139,250,.28);
+    background: linear-gradient(135deg, rgba(139,92,246,.1), rgba(34,211,238,.05));
+  }
+  .value-icon { flex: none; margin-top: 1px; }
+  .value-card p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin-top: 30px;
+  }
+  .feature-card {
+    padding: 16px 17px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+  .feature-title { font-weight: 600; font-size: 14.5px; margin-top: 9px; }
+  .feature-desc { font-size: 12.5px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+</style>

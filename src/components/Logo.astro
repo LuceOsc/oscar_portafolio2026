@@ -1,0 +1,21 @@
+---
+interface Props {
+  gradientId: string;
+  size?: number;
+  from?: string;
+  to?: string;
+}
+const { gradientId, size = 26, from = '#8b5cf6', to = '#3b82f6' } = Astro.props;
+---
+<svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke={`url(#${gradientId})`} stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+  <defs>
+    <linearGradient id={gradientId} x1="0" y1="0" x2="64" y2="64">
+      <stop offset="0" stop-color={from} />
+      <stop offset="1" stop-color={to} />
+    </linearGradient>
+  </defs>
+  <path d="M16 8 L27 24 L11 25 Z" /><path d="M48 8 L37 24 L53 25 Z" />
+  <path d="M11 25 L24 23 L32 26 L40 23 L53 25 L50 42 L40 52 L32 55 L24 52 L14 42 Z" />
+  <path d="M22 33 L28 35" /><path d="M42 33 L36 35" /><path d="M30 41 L32 43 L34 41" />
+  <path d="M21 41 L9 39 M21 44 L10 47" /><path d="M43 41 L55 39 M43 44 L54 47" />
+</svg>
