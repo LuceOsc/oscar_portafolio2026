@@ -243,4 +243,23 @@ const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[
   @media (prefers-reduced-motion: reduce) {
     .photo-frame, .chip-stack { animation: none; }
   }
+
+  @media (max-width: 760px) {
+    .hero { flex-direction: column; text-align: center; }
+    .hero-copy { display: flex; flex-direction: column; align-items: center; }
+    .hero-phrase { max-width: 100%; }
+    .hero-actions, .hero-stats { justify-content: center; }
+    .hero-stats { gap: 18px 26px; }
+    .hero-art { order: -1; width: fit-content; max-width: 100%; margin: 0 auto 8px; }
+    .art-mark { opacity: .07; }
+    .chip-stack { top: 6%; right: -4%; }
+  }
+
+  @media (max-width: 420px) {
+    .hero { gap: 40px; }
+    .hero-stats { flex-direction: column; gap: 14px; }
+    .stat-sep { display: none; }
+    .hero-actions { flex-direction: column; width: 100%; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+  }
 </style>
