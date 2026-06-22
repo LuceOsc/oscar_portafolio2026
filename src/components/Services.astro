@@ -15,22 +15,6 @@ const services = [
     titleKey: 'serv.3t', descKey: 'serv.3d', gradient: 'linear-gradient(135deg,#22d3ee,#3b82f6)', glow: 'rgba(34,211,238,.16)', border: 'rgba(34,211,238,.5)',
     icon: '<path d="M8 4c-3 0-2 8-5 8 3 0 2 8 5 8"/><path d="M16 4c3 0 2 8 5 8-3 0-2 8-5 8"/>',
   },
-  {
-    titleKey: 'serv.4t', descKey: 'serv.4d', gradient: 'linear-gradient(135deg,#a855f7,#8b5cf6)', glow: 'rgba(124,58,237,.18)', border: 'rgba(139,92,246,.5)',
-    icon: '<polygon points="12 3 21 8 12 13 3 8"/><polyline points="3 13 12 18 21 13"/>',
-  },
-  {
-    titleKey: 'serv.5t', descKey: 'serv.5d', gradient: 'linear-gradient(135deg,#3b82f6,#6366f1)', glow: 'rgba(37,99,235,.18)', border: 'rgba(59,130,246,.5)',
-    icon: '<path d="M8 4c-3 0-2 8-5 8 3 0 2 8 5 8"/><path d="M16 4c3 0 2 8 5 8-3 0-2 8-5 8"/>',
-  },
-  {
-    titleKey: 'serv.6t', descKey: 'serv.6d', gradient: 'linear-gradient(135deg,#22d3ee,#8b5cf6)', glow: 'rgba(34,211,238,.16)', border: 'rgba(34,211,238,.5)',
-    icon: '<path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
-  },
-  {
-    titleKey: 'serv.7t', descKey: 'serv.7d', gradient: 'linear-gradient(135deg,#8b5cf6,#6366f1)', glow: 'rgba(124,58,237,.18)', border: 'rgba(139,92,246,.5)',
-    icon: '<line x1="4" y1="20" x2="20" y2="20"/><rect x="5.5" y="12" width="3" height="6"/><rect x="10.5" y="7" width="3" height="11"/><rect x="15.5" y="14" width="3" height="4"/>',
-  },
 ];
 ---
 <section id="services" class="services">
@@ -60,7 +44,7 @@ const services = [
       </div>
       <h3 class="service-title" data-i18n="contact.title">{t('contact.title')}</h3>
       <a href="#contact" class="service-link">
-        <span data-i18n="nav.cta">{t('nav.cta')}</span>
+        <span data-i18n="serv.ctaLink">{t('serv.ctaLink')}</span>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>

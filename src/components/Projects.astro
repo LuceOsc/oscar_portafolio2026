@@ -28,6 +28,10 @@ const filters = [
     </div>
     <h2 class="section-title" data-i18n="proj.title">{t('proj.title')}</h2>
     <p class="section-sub" data-i18n="proj.sub">{t('proj.sub')}</p>
+    <a href="#contact" class="proj-cta-link">
+      <span data-i18n="proj.ctaLink">{t('proj.ctaLink')}</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
   </div>
 
   <div class="filters">
@@ -149,6 +153,16 @@ const filters = [
 
 <style>
   .projects { max-width: 1240px; margin: 0 auto; padding: clamp(70px, 11vw, 130px) 24px; }
+  .proj-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 16px;
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14.5px;
+  }
   .filters { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 34px; }
   .filter-btn {
     height: 42px;
