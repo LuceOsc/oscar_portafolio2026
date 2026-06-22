@@ -49,7 +49,17 @@ const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[
         <div class="feature-title" data-i18n="about.s3">{t('about.s3')}</div>
         <div class="feature-desc" data-i18n="about.s3d">{t('about.s3d')}</div>
       </div>
+      <div class="feature-card">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <div class="feature-title" data-i18n="about.s4">{t('about.s4')}</div>
+        <div class="feature-desc" data-i18n="about.s4d">{t('about.s4d')}</div>
+      </div>
     </div>
+
+    <a href="https://wa.me/526692662372" target="_blank" rel="noopener" class="about-cta">
+      <span data-i18n="about.waCta">{t('about.waCta')}</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
   </div>
 </section>
 
@@ -183,4 +193,15 @@ const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[
   }
   .feature-title { font-weight: 600; font-size: 14.5px; margin-top: 9px; }
   .feature-desc { font-size: 12.5px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+  .about-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 22px;
+    color: #a78bfa;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14.5px;
+  }
 </style>
