@@ -1,11 +1,14 @@
 ---
 import i18n from '../data/i18n.json';
+import config from '../data/config.json';
 const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[key]?.es ?? key;
+const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message.es)}`;
 
 const services = [
   {
+    // Only this card gets its own WhatsApp button, per the brief's explicit ask for the "Páginas web" service
     titleKey: 'serv.1t', descKey: 'serv.1d', exampleKey: 'serv.1ex', gradient: 'linear-gradient(135deg,#8b5cf6,#3b82f6)', glow: 'rgba(124,58,237,.18)', border: 'rgba(139,92,246,.5)',
-    icon: '<polyline points="9 8 5 12 9 16"/><polyline points="15 8 19 12 15 16"/>',
+    icon: '<polyline points="9 8 5 12 9 16"/><polyline points="15 8 19 12 15 16"/>', wa: true,
   },
   {
     titleKey: 'serv.2t', descKey: 'serv.2d', exampleKey: 'serv.2ex', gradient: 'linear-gradient(135deg,#6366f1,#3b82f6)', glow: 'rgba(37,99,235,.18)', border: 'rgba(59,130,246,.5)',
@@ -40,6 +43,12 @@ const services = [
         <h3 class="service-title" data-i18n={s.titleKey}>{t(s.titleKey)}</h3>
         <p class="service-desc" data-i18n={s.descKey}>{t(s.descKey)}</p>
         <p class="service-example" data-i18n={s.exampleKey}>{t(s.exampleKey)}</p>
+        {s.wa && (
+          <a href={waLink} target="_blank" rel="noopener" class="service-wa-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.4 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>
+            <span data-i18n="hero.btn1">{t('hero.btn1')}</span>
+          </a>
+        )}
       </div>
     ))}
 
@@ -100,6 +109,19 @@ const services = [
     margin: 12px 0 0;
     padding-top: 12px;
     border-top: 1px dashed var(--border);
+  }
+  .service-wa-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    background: #25d366;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
   }
 
   .service-cta {

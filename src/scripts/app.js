@@ -45,6 +45,13 @@ function applyLang(lang, persist = true) {
     const v = dict[el.getAttribute('data-i18n-ph')];
     if (v && v[lang] != null) el.setAttribute('placeholder', v[lang]);
   });
+  document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+    const v = dict[el.getAttribute('data-i18n-aria')];
+    if (v && v[lang] != null) {
+      el.setAttribute('aria-label', v[lang]);
+      el.setAttribute('title', v[lang]);
+    }
+  });
   document.querySelectorAll('[data-lang-label]').forEach((el) => {
     el.textContent = lang === 'es' ? 'EN' : 'ES';
   });

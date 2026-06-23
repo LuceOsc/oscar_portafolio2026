@@ -18,6 +18,7 @@ const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponen
 
     <p class="hero-role" data-i18n="hero.role">{t('hero.role')}</p>
     <p class="hero-phrase" data-i18n="hero.phrase">{t('hero.phrase')}</p>
+    <p class="hero-extra" data-i18n="hero.extra">{t('hero.extra')}</p>
 
     <div class="hero-actions">
       <a href={waLink} target="_blank" rel="noopener" class="btn btn-primary">
@@ -131,6 +132,13 @@ const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponen
     color: var(--muted);
     margin: 18px 0 0;
     max-width: 480px;
+  }
+  .hero-extra {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: .02em;
+    color: var(--violet);
+    margin: 14px 0 0;
   }
   .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
   .hero-stats { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 42px; }
@@ -250,6 +258,7 @@ const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponen
     .hero { flex-direction: column; text-align: center; }
     .hero-copy { display: flex; flex-direction: column; align-items: center; }
     .hero-phrase { max-width: 100%; }
+    .hero-extra { max-width: 100%; }
     .hero-actions, .hero-stats { justify-content: center; }
     .hero-stats { gap: 18px 26px; }
     .hero-art { order: -1; width: fit-content; max-width: 100%; margin: 0 auto 8px; }
