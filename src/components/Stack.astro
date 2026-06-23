@@ -170,7 +170,7 @@ const categories = [
     position: relative;
     padding: 26px clamp(22px, 3vw, 32px);
     border-radius: 18px;
-    background: linear-gradient(150deg, #11101d, #0c0c16);
+    background: var(--bg2);
     overflow: hidden;
   }
   .ai-grid {
@@ -208,11 +208,11 @@ const categories = [
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
     letter-spacing: .14em;
-    color: #c4b5fd;
+    color: var(--violet);
     text-transform: uppercase;
   }
   .ai-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 18px; margin: 9px 0 0; }
-  .ai-desc { font-size: 13px; color: #b9b9d4; margin: 4px 0 0; line-height: 1.45; }
+  .ai-desc { font-size: 13px; color: var(--muted); margin: 4px 0 0; line-height: 1.45; }
   .ai-pills { position: relative; display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
   .ai-pill {
     display: flex;
@@ -220,11 +220,11 @@ const categories = [
     gap: 9px;
     padding: 9px 14px 9px 9px;
     border-radius: 11px;
-    border: 1px solid rgba(167,139,250,.28);
-    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+    background: var(--surface);
     font-size: 13.5px;
     font-weight: 500;
-    color: #ECECF4;
+    color: var(--text);
     transition: border-color .25s, box-shadow .25s, transform .25s;
   }
   .ai-pill:hover { border-color: var(--pill-glow); box-shadow: 0 0 20px var(--pill-glow); transform: translateY(-2px); }
