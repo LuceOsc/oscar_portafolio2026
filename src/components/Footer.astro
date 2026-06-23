@@ -1,7 +1,9 @@
 ---
 import Logo from './Logo.astro';
 import i18n from '../data/i18n.json';
+import config from '../data/config.json';
 const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[key]?.es ?? key;
+const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message.es)}`;
 ---
 <footer class="footer">
   <div class="footer-top">
@@ -13,7 +15,7 @@ const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[
       </div>
     </div>
     <div class="footer-social">
-      <a href="https://wa.me/526692662372" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-icon">
+      <a href={waLink} target="_blank" rel="noopener" aria-label="WhatsApp" class="social-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 20Z"/></svg>
       </a>
       <a href="#" data-email-link aria-label="Email" class="social-icon">

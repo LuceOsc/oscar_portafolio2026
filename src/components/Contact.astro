@@ -1,6 +1,9 @@
 ---
 import i18n from '../data/i18n.json';
+import config from '../data/config.json';
 const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[key]?.es ?? key;
+const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message.es)}`;
+const waNumberDisplay = `+${config.whatsapp.number.slice(0,2)} ${config.whatsapp.number.slice(2,5)} ${config.whatsapp.number.slice(5,8)} ${config.whatsapp.number.slice(8)}`;
 ---
 <section id="contact" class="contact">
   <div data-reveal class="contact-card">
@@ -19,13 +22,13 @@ const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[
         </div>
 
         <div class="contact-links">
-          <a href="https://wa.me/526692662372" target="_blank" rel="noopener" class="contact-link contact-link-wa">
+          <a href={waLink} target="_blank" rel="noopener" class="contact-link contact-link-wa">
             <span class="link-icon link-icon-wa">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.4 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>
             </span>
             <span class="link-text">
               <span data-i18n="contact.waBtn">{t('contact.waBtn')}</span>
-              <span class="link-sub">+52 669 266 2372</span>
+              <span class="link-sub">{waNumberDisplay}</span>
             </span>
           </a>
           <a href="#" data-email-link class="contact-link contact-link-email">

@@ -1,5 +1,6 @@
 import dict from '../data/i18n.json';
 import projects from '../data/projects.json';
+import config from '../data/config.json';
 
 const projectsById = Object.fromEntries(projects.map((p) => [p.id, p]));
 
@@ -247,7 +248,7 @@ function setupContactForm() {
     const email = (form.elements['cemail']?.value || '').trim();
     const msg = (form.elements['cmsg']?.value || '').trim();
     const text = encodeURIComponent('Hola Oscar, soy ' + name + ' (' + email + '). ' + msg);
-    window.open('https://wa.me/526692662372?text=' + text, '_blank');
+    window.open('https://wa.me/' + config.whatsapp.number + '?text=' + text, '_blank');
   });
 }
 

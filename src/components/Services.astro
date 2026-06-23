@@ -4,15 +4,19 @@ const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[
 
 const services = [
   {
-    titleKey: 'serv.1t', descKey: 'serv.1d', gradient: 'linear-gradient(135deg,#8b5cf6,#3b82f6)', glow: 'rgba(124,58,237,.18)', border: 'rgba(139,92,246,.5)',
+    titleKey: 'serv.1t', descKey: 'serv.1d', exampleKey: 'serv.1ex', gradient: 'linear-gradient(135deg,#8b5cf6,#3b82f6)', glow: 'rgba(124,58,237,.18)', border: 'rgba(139,92,246,.5)',
     icon: '<polyline points="9 8 5 12 9 16"/><polyline points="15 8 19 12 15 16"/>',
   },
   {
-    titleKey: 'serv.2t', descKey: 'serv.2d', gradient: 'linear-gradient(135deg,#6366f1,#3b82f6)', glow: 'rgba(37,99,235,.18)', border: 'rgba(59,130,246,.5)',
+    titleKey: 'serv.2t', descKey: 'serv.2d', exampleKey: 'serv.2ex', gradient: 'linear-gradient(135deg,#6366f1,#3b82f6)', glow: 'rgba(37,99,235,.18)', border: 'rgba(59,130,246,.5)',
     icon: '<rect x="3" y="4" width="18" height="12" rx="2"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/>',
   },
   {
-    titleKey: 'serv.3t', descKey: 'serv.3d', gradient: 'linear-gradient(135deg,#22d3ee,#3b82f6)', glow: 'rgba(34,211,238,.16)', border: 'rgba(34,211,238,.5)',
+    titleKey: 'serv.3t', descKey: 'serv.3d', exampleKey: 'serv.3ex', gradient: 'linear-gradient(135deg,#22d3ee,#3b82f6)', glow: 'rgba(34,211,238,.16)', border: 'rgba(34,211,238,.5)',
+    icon: '<rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/>',
+  },
+  {
+    titleKey: 'serv.4t', descKey: 'serv.4d', exampleKey: 'serv.4ex', gradient: 'linear-gradient(135deg,#34d399,#22d3ee)', glow: 'rgba(52,211,153,.16)', border: 'rgba(52,211,153,.5)',
     icon: '<path d="M8 4c-3 0-2 8-5 8 3 0 2 8 5 8"/><path d="M16 4c3 0 2 8 5 8-3 0-2 8-5 8"/>',
   },
 ];
@@ -35,6 +39,7 @@ const services = [
         </div>
         <h3 class="service-title" data-i18n={s.titleKey}>{t(s.titleKey)}</h3>
         <p class="service-desc" data-i18n={s.descKey}>{t(s.descKey)}</p>
+        <p class="service-example" data-i18n={s.exampleKey}>{t(s.exampleKey)}</p>
       </div>
     ))}
 
@@ -88,6 +93,14 @@ const services = [
     margin: 18px 0 0;
   }
   .service-desc { font-size: 14px; line-height: 1.55; color: var(--muted); margin: 9px 0 0; }
+  .service-example {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: #a78bfa;
+    margin: 12px 0 0;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+  }
 
   .service-cta {
     border-style: dashed;

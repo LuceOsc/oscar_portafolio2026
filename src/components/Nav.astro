@@ -1,7 +1,9 @@
 ---
 import Logo from './Logo.astro';
 import i18n from '../data/i18n.json';
+import config from '../data/config.json';
 const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[key]?.es ?? key;
+const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message.es)}`;
 ---
 <nav class="nav">
   <div class="container nav-inner">
@@ -32,7 +34,7 @@ const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[
         <span data-ic-moon style="display:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.6 6.6 0 0 0 21 12.8Z"/></svg></span>
       </button>
 
-      <a href="https://wa.me/526692662372" target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+      <a href={waLink} target="_blank" rel="noopener" class="btn btn-primary nav-cta">
         <span data-i18n="nav.cta">{t('nav.cta')}</span>
       </a>
     </div>
