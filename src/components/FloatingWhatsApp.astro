@@ -4,30 +4,49 @@ import config from '../data/config.json';
 const t = (key: string) => (i18n as Record<string, { es: string; en: string }>)[key]?.es ?? key;
 const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message.es)}`;
 ---
-<!-- Persistent WhatsApp CTA: stays fixed on screen across all sections so visitors can contact at any scroll position -->
-<a href={waLink} target="_blank" rel="noopener" class="wa-float" data-i18n-aria="wa.float" aria-label={t('wa.float')} title={t('wa.float')}>
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.4 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>
-</a>
+<!-- Persistent contact CTAs: stay fixed on screen across all sections so visitors can reach out at any scroll position -->
+<div class="float-stack">
+  <a href="#" data-email-link class="mail-float" data-i18n-aria="mail.float" aria-label={t('mail.float')} title={t('mail.float')}>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+  </a>
+  <a href={waLink} target="_blank" rel="noopener" class="wa-float" data-i18n-aria="wa.float" aria-label={t('wa.float')} title={t('wa.float')}>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.4 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>
+  </a>
+</div>
 
 <style>
-  .wa-float {
+  .float-stack {
     position: fixed;
     right: clamp(16px, 4vw, 28px);
     bottom: clamp(16px, 4vw, 28px);
     z-index: 80;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .wa-float, .mail-float {
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 58px;
-    height: 58px;
     border-radius: 50%;
-    background: #25d366;
     color: #fff;
-    box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(37,211,102,.6);
-    animation: wa-pulse 2.6s infinite;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
     transition: transform .25s, box-shadow .25s;
   }
-  .wa-float:hover {
+  .wa-float {
+    width: 58px;
+    height: 58px;
+    background: #25d366;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(37,211,102,.6);
+    animation: wa-pulse 2.6s infinite;
+  }
+  .mail-float {
+    width: 46px;
+    height: 46px;
+    background: var(--gradient-brand);
+  }
+  .wa-float:hover, .mail-float:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 16px 40px rgba(0,0,0,.4);
   }
