@@ -38,6 +38,10 @@ const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponen
         <span data-i18n="nav.cta">{t('nav.cta')}</span>
       </a>
     </div>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menú" aria-expanded="false" type="button">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -52,12 +56,24 @@ const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponen
     border-bottom: 1px solid var(--border);
   }
   .nav-inner {
+    position: relative;
     padding-block: 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 18px;
     flex-wrap: wrap;
+  }
+  .nav-toggle {
+    display: none;
+    width: 40px; height: 40px;
+    align-items: center; justify-content: center;
+    border-radius: 11px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    flex: none;
   }
   .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: inherit; }
   .brand-mark {
@@ -86,4 +102,30 @@ const waLink = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponen
   .lang-btn { width: auto; gap: 6px; padding: 0 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
   .nav-cta { height: 40px; padding: 0 18px; font-size: 14px; box-shadow: 0 8px 24px rgba(124,58,237,.35); }
   .nav-cta:hover { box-shadow: 0 14px 34px rgba(124,58,237,.5); }
+
+  /* Below 760px the link/toggle/CTA row no longer fits beside the logo, so it
+     collapses behind a hamburger to keep the hero visible without scrolling. */
+  @media (max-width: 760px) {
+    .nav-toggle { display: flex; }
+    .nav-actions {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+      padding: 12px 4px 18px;
+      background: var(--navbg);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .nav-actions.open { display: flex; }
+    .nav-link { padding: 12px 14px; }
+    .nav-sep { display: none; }
+    .lang-btn, #theme-toggle { align-self: flex-start; margin: 4px 0 0 14px; }
+    .nav-cta { margin: 8px 14px 0; justify-content: center; }
+  }
 </style>

@@ -246,6 +246,20 @@ function setupReveal() {
   setTimeout(() => { els.slice().forEach(reveal); els = []; }, 1600);
 }
 
+function setupNavToggle() {
+  const btn = document.getElementById('nav-toggle');
+  const menu = document.querySelector('.nav-actions');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+  });
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }));
+}
+
 function setupContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
@@ -278,6 +292,7 @@ function init() {
   setupFilters();
   setupReveal();
   setupContactForm();
+  setupNavToggle();
 
   document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
   document.getElementById('lang-toggle')?.addEventListener('click', toggleLang);
