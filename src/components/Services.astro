@@ -46,22 +46,25 @@ const services = [
         {s.wa && (
           <a href={waLink} target="_blank" rel="noopener" class="service-wa-link">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.4 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>
-            <span data-i18n="hero.btn1">{t('hero.btn1')}</span>
+            <span data-i18n="serv.waBtn">{t('serv.waBtn')}</span>
           </a>
         )}
       </div>
     ))}
 
-    <div data-reveal class="service-card service-cta">
+  </div>
+
+  <div data-reveal class="service-cta">
+    <div class="service-cta-text">
       <div class="service-icon service-icon-outline">
         <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Z"/></svg>
       </div>
       <h3 class="service-title" data-i18n="contact.title">{t('contact.title')}</h3>
-      <a href="#contact" class="service-link">
-        <span data-i18n="serv.ctaLink">{t('serv.ctaLink')}</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
     </div>
+    <a href="#contact" class="service-link">
+      <span data-i18n="serv.ctaLink">{t('serv.ctaLink')}</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
   </div>
 </section>
 
@@ -125,28 +128,36 @@ const services = [
   }
 
   .service-cta {
-    border-style: dashed;
-    background: transparent;
+    margin-top: 18px;
+    padding: 22px 28px;
+    border-radius: 18px;
+    border: 1px dashed var(--border);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
   }
-  .service-cta:hover { transform: none; border-color: var(--border); box-shadow: none; }
+  .service-cta-text { display: flex; align-items: center; gap: 16px; }
   .service-icon-outline {
     border: 1px solid var(--border);
     background: var(--surface);
     box-shadow: none;
+    flex: none;
   }
-  .service-cta .service-title { margin: 14px 0 0; }
+  .service-cta .service-title { margin: 0; }
   .service-link {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    margin-top: 6px;
     color: #a78bfa;
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
+    flex: none;
+  }
+
+  @media (max-width: 560px) {
+    .service-cta { flex-direction: column; align-items: flex-start; }
   }
 </style>
